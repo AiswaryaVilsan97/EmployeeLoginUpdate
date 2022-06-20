@@ -41,9 +41,9 @@ public class Access extends HttpServlet{
 	}}
 	
 	
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException,ServletException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException,ServletException {
 		
-		logger.debug("Acceptclass::start of doGet method(-)");
+		logger.debug("Acceptclass::start of doPost method(-)");
 		
 		res.setContentType("application/json");
 		res.setCharacterEncoding("UTF-8");
@@ -83,10 +83,10 @@ public class Access extends HttpServlet{
 			 while (r.next()) {
 		            JSONArray jsonr= new JSONArray();
 			        JSONObject jo= new JSONObject();
-			        jo.put("empl_id", r.getLong("empl_id"));
-					jo.put("id", r.getLong("id"));
+			        jo.put("empl_id", r.getInt("empl_id"));
+					jo.put("id", r.getInt("id"));
 					jo.put("empl_name", r.getString("empl_name"));
-					jo.put("phone_number", r.getLong("phone_number"));
+					jo.put("phone_number", r.getString("phone_number"));
 					jo.put("place", r.getString("place"));
 					jo.put("role", r.getString("role"));
 					
@@ -104,10 +104,10 @@ public class Access extends HttpServlet{
 		         while (rs.next()) {
 		            JSONArray jsonr= new JSONArray();
 			        JSONObject jo= new JSONObject();
-			        jo.put("empl_id", rs.getLong("empl_id"));
-				    jo.put("id", rs.getLong("id"));
+			        jo.put("empl_id", rs.getInt("empl_id"));
+				    jo.put("id", rs.getInt("id"));
 					jo.put("empl_name", rs.getString("empl_name"));
-					jo.put("phone_number", rs.getLong("phone_number"));
+					jo.put("phone_number", rs.getString("phone_number"));
 					jo.put("place", rs.getString("place"));
 					jo.put("role", rs.getString("role"));
 					
@@ -166,6 +166,6 @@ public class Access extends HttpServlet{
 				 logger.debug("Acceptclass::failed to close resultset object");
 				 
 			 		}
-			 logger.debug("Acceptclass::end of the main method");
+			 logger.debug("Acceptclass::end of the doPost method");
 			 	}
 			 	}
