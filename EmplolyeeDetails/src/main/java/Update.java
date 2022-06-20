@@ -44,17 +44,15 @@ public class Update extends HttpServlet{
 		logger.debug("Updateclass::start of doPut method(-)");
 		
 		res.setContentType("application/json");
-		res.setCharacterEncoding("UTF-8");
 		String empl_ID= req.getParameter("empl_id");
 		Double empl_id=Double.parseDouble(empl_ID);
-		//String place= req.getParameter("place");
+		
 		String phone_Number = req.getParameter("phone_number");
 		Double phone_number=Double.parseDouble(phone_Number);
 		
 		PrintWriter out= res.getWriter();
 		Connection c=null;
 	    PreparedStatement ps=null;
-	   // Statement st=null;
 	   ResultSet r=null;
 		
 		 try {
@@ -101,3 +99,4 @@ public class Update extends HttpServlet{
 			e.printStackTrace();
 			logger.fatal("Updateclass::unknown db problem"+e.getMessage());
 		 	}}}
+
