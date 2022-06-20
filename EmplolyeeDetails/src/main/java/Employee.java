@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 public class Employee {
 		
-	public  boolean validate(String empl_name,String role,String phone_number,String place) 
+	public  boolean validate(String empl_name,String role) 
 	{
 		boolean status = false;  
 	
