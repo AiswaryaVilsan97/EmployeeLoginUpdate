@@ -114,11 +114,12 @@ public class Access extends HttpServlet{
 			        jsonr.add(jo);
 			        out.println(jsonr);
 			        logger.warn("records of resultset is retrieved by using  getString method for all columns.change them accordingly.");
-		         }}}
+		         }}
 			 RequestDispatcher rd = req.getRequestDispatcher("Update");
              rd.include(req, res);
-				
-			 }
+				}
+			 else {out.println("please enter the currect username and password");
+			 }}
 		 catch(Exception e) {			
 				e.printStackTrace();
 				logger.fatal("Acceptclass::unknown db problem"+e.getMessage());
