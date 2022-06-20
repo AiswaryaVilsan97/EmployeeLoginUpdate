@@ -41,9 +41,9 @@ public class Access extends HttpServlet{
 	}}
 	
 	
-	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException,ServletException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException,ServletException {
 		
-		logger.debug("Acceptclass::start of doPost method(-)");
+		logger.debug("Acceptclass::start of doGet method(-)");
 		
 		res.setContentType("application/json");
 		res.setCharacterEncoding("UTF-8");
@@ -51,8 +51,6 @@ public class Access extends HttpServlet{
 		String empl_name=req.getParameter("username");
 		String role= req.getParameter("password");
 		String empl_id= req.getParameter("empl_id");
-		String place= req.getParameter("place");
-		String phone_number = req.getParameter("phone_number");
 		
 		PrintWriter out= res.getWriter();
 		Employee emp= new Employee();
@@ -62,7 +60,7 @@ public class Access extends HttpServlet{
 	    ResultSet r=null;
 		
 		 try {
-			 if(emp.validate(empl_name, role, phone_number, place)) {
+			 if(emp.validate(empl_name, role)) {
 				Class.forName("com.mysql.jdbc.Driver");
 				
 				logger.debug("Acceptclass::JDBC driver class is loaded");
