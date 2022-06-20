@@ -45,15 +45,14 @@ public class Update extends HttpServlet{
 		
 		res.setContentType("application/json");
 		String empl_ID= req.getParameter("empl_id");
-		Double empl_id=Double.parseDouble(empl_ID);
+	int empl_id=Integer.parseInt(empl_ID);
 		
-		String phone_Number = req.getParameter("phone_number");
-		Double phone_number=Double.parseDouble(phone_Number);
+		String place = req.getParameter("place");
 		
 		PrintWriter out= res.getWriter();
 		Connection c=null;
 	    PreparedStatement ps=null;
-	   ResultSet r=null;
+	    ResultSet r=null;
 		
 		 try {
 			 HttpSession s= req.getSession(false);
@@ -67,26 +66,26 @@ public class Update extends HttpServlet{
 			 
 		
  
-				ps= c.prepareStatement("UPDATE employee.employee SET phone_number=? WHERE empl_id =?");
+				ps= c.prepareStatement("UPDATE employee.employee SET place=? WHERE empl_id =?");
 				logger.debug("Updateclass::JDBC prepareStatement created");
-				 ps.setDouble(1,empl_id);
-				 ps.setDouble(2, phone_number);				
+				 ps.setString(1,place);
+				 ps.setInt(2, empl_id);				
 		         ps.executeUpdate();
 		         
 		         out.println("updated");
 		         logger.debug("Updateclass::database updated");
 		         ps= c.prepareStatement("SELECT * FROM employee.employee  where empl_id=?");   
 		         System.out.println(empl_id);
-	               ps.setDouble(1,empl_id);
+	               ps.setInt(1,empl_id);
 	               r = ps.executeQuery();
 		         
 			    while (r.next()) {
 			    	JSONArray jsonr= new JSONArray();
 			    	JSONObject jo= new JSONObject();
-			     	jo.put("empl_id", r.getLong("empl_id"));
-					jo.put("id", r.getLong("id"));
+			     	jo.put("empl_id", r.getInt("empl_id"));
+					jo.put("id", r.getInt("id"));
 					jo.put("empl_name", r.getString("empl_name"));
-					jo.put("phone_number", r.getLong("phone_number"));
+					jo.put("phone_number", r.getString("phone_number"));
 					jo.put("place", r.getString("place"));
 					jo.put("role", r.getString("role"));
 					
@@ -99,4 +98,3 @@ public class Update extends HttpServlet{
 			e.printStackTrace();
 			logger.fatal("Updateclass::unknown db problem"+e.getMessage());
 		 	}}}
-
